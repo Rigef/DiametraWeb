@@ -40,7 +40,15 @@ function adjustVisibility(selectedOption) {
         }
 
         function handleOption() {
-            const input = getInputValues()
+            let input = 0;
+            try {
+                input = getInputValues()
+            } catch(e) {
+                document.getElementById('result_label').innerHTML = e.message;
+                document.getElementById('count_label').innerHTML = '';
+                return null;
+            }
+            
             let layer = 0;
             let length = 0;
             document.getElementById('result_label').innerHTML = '';
@@ -85,10 +93,17 @@ function adjustVisibility(selectedOption) {
                     console.log("Unknown selection.");
             }
 
-            console.log(input.spoolDiameter);
-            console.log(input.thickness );
-            console.log(length);
-            console.log(layer);
+            const resultObj = {
+                spoolDiameter: input.spoolDiameter,
+                length: length,
+                thickness: input.thickness
+            };
+
+            if(!validateNoneZero(resultObj)) {
+                document.getElementById('result_label').innerHTML = "Error: Tomt fält";
+                document.getElementById('count_label').innerHTML = '';
+                return null;  
+            }
 
             if(input.spoolDiameter && input.thickness && length && layer) {
                 const result = calculateSpoolDiameter(length, input.thickness, input.spoolDiameter, layer )
@@ -99,6 +114,9 @@ function adjustVisibility(selectedOption) {
         }
 
         function getInputValues() {
+            const MAXLENGTH = 10000000000;
+            const MAXTHICKNESS = 500;
+
             const selectedValue = document.getElementById('productOption').value || "0";
             let spoolDiameter = document.getElementById('spool_diameter').value || "0";
             const length_m = document.getElementById('length').value || "0";
@@ -113,20 +131,19 @@ function adjustVisibility(selectedOption) {
             // Validate integer values
             if (!isInteger(spoolDiameter) || !isInteger(huvAmount) || !isInteger(huvLength) || !isInteger(sheetAmount) || !isInteger(sheetLength)) {
                 console.log('One or more fields are not valid integers.');
-                return null; // Return null or handle the error appropriately
+                throw new Error("Otillåtna värden");
             }
 
             // Validate length to allow decimals
             if (!isNumber(length_m) || !isNumber(thickness)) {
                 console.log('One or more fields are not valid numbers.');
-                return null; // Return null or handle the error appropriately
+                throw new Error("Otillåtna värden");
             }
 
             let new_length_m = length_m.replace(',', '.');
             let new_thickness = thickness.replace(',', '.');
 
-
-            return {
+            const resultObject = {
                 selectedValue: selectedValue,
                 spoolDiameter: parseInt(spoolDiameter),
                 length_m: parseFloat(new_length_m),
@@ -136,6 +153,20 @@ function adjustVisibility(selectedOption) {
                 sheetAmount: parseInt(sheetAmount),
                 sheetLength: parseInt(sheetLength)
             };
+
+            if (thickness > MAXTHICKNESS) {
+                throw new Error("Orimlig tjocklek");
+            }
+
+            if ((huvAmount * huvLength > MAXLENGTH) || (sheetAmount * sheetLength) > MAXLENGTH || m_to_mm(length_m) > MAXLENGTH) {
+                throw new Error("Orimligt lång");
+            }
+            
+            if (validateAllPositive(resultObject)) {
+                return resultObject;
+            } else {
+                throw new Error("Negativa värden är ej tillåtna");
+            }
         }
 
         // Helper functions to check for integers and numeric values
@@ -147,6 +178,28 @@ function adjustVisibility(selectedOption) {
         function isNumber(value) {
             const num = parseFloat(value);
             return !isNaN(num) && (value.toString() === num.toString());
+        }
+
+        function validateAllPositive(obj) {
+            for (let key in obj) {
+                if (key !== 'selectedValue' && obj[key] < 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function validateNoneZero(obj) {
+            for (let key in obj) {
+                if (key !== 'selectedValue' && obj[key] <= 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function validateLength(obj) {
+
         }
 
 
@@ -176,8 +229,8 @@ function adjustVisibility(selectedOption) {
                 count: resultDict.count
             };
         }
-
-        // Initialize to hide all optional fields
+        
+        // Page
         window.onload = function() {
             // Set the spool diameter to 90
             var spoolDiameterInput = document.getElementById('spool_diameter');
