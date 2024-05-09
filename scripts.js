@@ -177,7 +177,7 @@ function adjustVisibility(selectedOption) {
 
         function isNumber(value) {
             const num = parseFloat(value);
-            return !isNaN(num) && (value.toString() === num.toString());
+            return !isNaN(num) && isFinite(num);
         }
 
         function validateAllPositive(obj) {
