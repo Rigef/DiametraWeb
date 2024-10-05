@@ -1,3 +1,4 @@
+//BACKUP
 function adjustVisibility(selectedOption) {
             // Hide all elements initially
             const elements = ['lengthWrapper', 'thicknessWrapper', 'huvAmountWrapper', 'huvLengthWrapper', 'sheetAmountWrapper', 'sheetLengthWrapper'];
