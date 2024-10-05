@@ -1,11 +1,14 @@
 
-function tab2_visibility(choosed_product) {
-    const hidden_elements = ['totalSpoolDiameterWrapper', 'thicknessWrapper2', 'submitWrapper2'];
+function tab2_visibility(selected_product) {
+    const hidden_elements = ['totalSpoolDiameterWrapper', 'thicknessWrapper2', 'resultWrapper2'];
     const inputs = ['totalSpoolDiameter', 'thickness2'];
     hidden_elements.forEach(el => document.getElementById(el).style.display = 'none');
     inputs.forEach(el => document.getElementById(el).value = '');
 
-    switch(choosed_product) {
+    document.getElementById('result_label2').innerHTML = '';
+    document.getElementById('count_label2').innerHTML = '';
+
+    switch(selected_product) {
         case 'no_option':
             layer = 0
             welded = false;
@@ -14,32 +17,32 @@ function tab2_visibility(choosed_product) {
         case 'foil_option':
             layer = 2; // 1 layers * 2 sides
             welded = false;
-            ['totalSpoolDiameterWrapper', 'thicknessWrapper2', 'submitWrapper2'].forEach(el => document.getElementById(el).style.display = 'block');
+            ['totalSpoolDiameterWrapper', 'thicknessWrapper2', 'submitWrapper2', 'resultWrapper2'].forEach(el => document.getElementById(el).style.display = 'block');
             break;
         case 'tube_option':
             layer = 4; // 2 layers * 2 sides
             welded = false;
-            ['totalSpoolDiameterWrapper', 'thicknessWrapper2', 'submitWrapper2'].forEach(el => document.getElementById(el).style.display = 'block');
+            ['totalSpoolDiameterWrapper', 'thicknessWrapper2', 'submitWrapper2', 'resultWrapper2'].forEach(el => document.getElementById(el).style.display = 'block');
             break;
         case 'folded_tube_option':
             layer = 8; // 4 layers * 2 sides
             welded = false;
-            ['totalSpoolDiameterWrapper', 'thicknessWrapper2', 'submitWrapper2'].forEach(el => document.getElementById(el).style.display = 'block');
+            ['totalSpoolDiameterWrapper', 'thicknessWrapper2', 'submitWrapper2', 'resultWrapper2'].forEach(el => document.getElementById(el).style.display = 'block');
             break;
         case 'huv_option':
             layer = 4; // 2 layers * 2 sides
             welded = true;
-            ['totalSpoolDiameterWrapper', 'thicknessWrapper2', 'submitWrapper2'].forEach(el => document.getElementById(el).style.display = 'block');
+            ['totalSpoolDiameterWrapper', 'thicknessWrapper2', 'submitWrapper2', 'resultWrapper2'].forEach(el => document.getElementById(el).style.display = 'block');
             break;
         case 'folded_huv_option':
             layer = 8; // 4 layers * 2 sides
             welded = true;
-            ['totalSpoolDiameterWrapper', 'thicknessWrapper2', 'submitWrapper2'].forEach(el => document.getElementById(el).style.display = 'block');
+            ['totalSpoolDiameterWrapper', 'thicknessWrapper2', 'submitWrapper2', 'resultWrapper2'].forEach(el => document.getElementById(el).style.display = 'block');
             break;
         case 'sheet_option':
             layer = 2; // 1 layers * 2 sides
             welded = true;
-            ['totalSpoolDiameterWrapper', 'thicknessWrapper2', 'submitWrapper2'].forEach(el => document.getElementById(el).style.display = 'block');
+            ['totalSpoolDiameterWrapper', 'thicknessWrapper2', 'submitWrapper2', 'resultWrapper2'].forEach(el => document.getElementById(el).style.display = 'block');
             break;
         default:
             console.log("Unknown selection.");
@@ -111,7 +114,7 @@ function tab2_reset() {
     const inputs = ['totalSpoolDiameter', 'thickness2'];
     inputs.forEach(el => document.getElementById(el).value = '');
 
-    ['totalSpoolDiameterWrapper', 'thicknessWrapper2', 'submitWrapper2'].forEach(el => document.getElementById(el).style.display = 'none');
+    ['totalSpoolDiameterWrapper', 'thicknessWrapper2', 'resultWrapper2'].forEach(el => document.getElementById(el).style.display = 'none');
     document.getElementById('result_label2').innerHTML = '';
     document.getElementById('count_label2').innerHTML = '';
 

@@ -1,9 +1,9 @@
 let layer = 0;
 let welded = false;
 
-function adjustVisibility(choosed_product) {
+function adjustVisibility(selected_product) {
             // Hide all elements initially
-            const hidden_elements = ['lengthWrapper', 'thicknessWrapper', 'huvAmountWrapper', 'huvLengthWrapper', 'sheetAmountWrapper', 'sheetLengthWrapper', 'submitWrapper'];
+            const hidden_elements = ['lengthWrapper', 'thicknessWrapper', 'huvAmountWrapper', 'huvLengthWrapper', 'sheetAmountWrapper', 'sheetLengthWrapper', 'resultWrapper'];
             const inputs = ['length', 'thickness', 'huv_amount', 'huv_length', 'sheet_amount', 'sheet_length'];
             hidden_elements.forEach(el => document.getElementById(el).style.display = 'none');
             inputs.forEach(el => document.getElementById(el).value = '');
@@ -14,7 +14,7 @@ function adjustVisibility(choosed_product) {
             document.getElementById('count_label').innerHTML = '';
 
             // Show elements based on selection
-            switch(choosed_product) {
+            switch(selected_product) {
                 case 'no_option':
                     layer = 0
                     welded = false;
@@ -23,32 +23,32 @@ function adjustVisibility(choosed_product) {
                 case 'foil_option':
                     layer = 2; // 1 layers * 2 sides
                     welded = false;
-                    ['lengthWrapper', 'thicknessWrapper', 'submitWrapper'].forEach(el => document.getElementById(el).style.display = 'block');
+                    ['lengthWrapper', 'thicknessWrapper', 'submitWrapper', 'resultWrapper'].forEach(el => document.getElementById(el).style.display = 'block');
                     break;
                 case 'tube_option':
                     layer = 4; // 2 layers * 2 sides
                     welded = false;
-                    ['lengthWrapper', 'thicknessWrapper', 'submitWrapper'].forEach(el => document.getElementById(el).style.display = 'block');
+                    ['lengthWrapper', 'thicknessWrapper', 'submitWrapper', 'resultWrapper'].forEach(el => document.getElementById(el).style.display = 'block');
                     break;
                 case 'folded_tube_option':
                     layer = 8; // 4 layers * 2 sides
                     welded = false;
-                    ['lengthWrapper', 'thicknessWrapper', 'submitWrapper'].forEach(el => document.getElementById(el).style.display = 'block');
+                    ['lengthWrapper', 'thicknessWrapper', 'submitWrapper', 'resultWrapper'].forEach(el => document.getElementById(el).style.display = 'block');
                     break;
                 case 'huv_option':
                     layer = 4; // 2 layers * 2 sides
                     welded = true;
-                    ['thicknessWrapper', 'huvAmountWrapper', 'huvLengthWrapper', 'submitWrapper'].forEach(el => document.getElementById(el).style.display = 'block');
+                    ['thicknessWrapper', 'huvAmountWrapper', 'huvLengthWrapper', 'submitWrapper', 'resultWrapper'].forEach(el => document.getElementById(el).style.display = 'block');
                     break;
                 case 'folded_huv_option':
                     layer = 8; // 4 layers * 2 sides
                     welded = true;
-                    ['thicknessWrapper', 'huvAmountWrapper', 'huvLengthWrapper', 'submitWrapper'].forEach(el => document.getElementById(el).style.display = 'block');
+                    ['thicknessWrapper', 'huvAmountWrapper', 'huvLengthWrapper', 'submitWrapper', 'resultWrapper'].forEach(el => document.getElementById(el).style.display = 'block');
                     break;
                 case 'sheet_option':
                     layer = 2; // 1 layers * 2 sides
                     welded = true;
-                    ['thicknessWrapper', 'sheetAmountWrapper', 'sheetLengthWrapper', 'submitWrapper'].forEach(el => document.getElementById(el).style.display = 'block');
+                    ['thicknessWrapper', 'sheetAmountWrapper', 'sheetLengthWrapper', 'submitWrapper', 'resultWrapper'].forEach(el => document.getElementById(el).style.display = 'block');
                     break;
                 default:
                     console.log("Unknown selection.");
@@ -257,12 +257,11 @@ function tab1_reset() {
     spoolDiameterInput.value = 90;
 
     // Hide all elements initially
-    const wrappers = ['lengthWrapper', 'thicknessWrapper', 'huvAmountWrapper', 'huvLengthWrapper', 'sheetAmountWrapper', 'sheetLengthWrapper'];
+    const wrappers = ['lengthWrapper', 'thicknessWrapper', 'huvAmountWrapper', 'huvLengthWrapper', 'sheetAmountWrapper', 'sheetLengthWrapper', 'resultWrapper'];
     const inputs = ['length', 'thickness', 'huv_amount', 'huv_length', 'sheet_amount', 'sheet_length'];
     const productOptionSelect = document.getElementById('productOption');
     wrappers.forEach(el => document.getElementById(el).style.display = 'none');
     inputs.forEach(el => document.getElementById(el).value = '');
-    document.getElementById('submitWrapper').style.display = 'none'; // Make sure to handle submit button visibility correctly.
     productOptionSelect.value = 'no_option';
     document.getElementById('result_label').innerHTML = '';
     document.getElementById('count_label').innerHTML = '';
