@@ -53,8 +53,6 @@ function tab2_submit() {
     const spool_diameter = document.getElementById("spool_diameter2").value;
     const thickness =  document.getElementById("thickness2").value.replace(',', '.');
     const total_spool_diameter = document.getElementById("totalSpoolDiameter").value;
-    console.log(total_spool_diameter)
-
     try {
         validate_inputs(spool_diameter, thickness, total_spool_diameter)
         calculate_length(spool_diameter, total_spool_diameter, thickness);
