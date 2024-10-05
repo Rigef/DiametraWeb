@@ -103,9 +103,9 @@ function calculate_length(spool_diameter, total_spool_diameter, thickness) {
         length += current_diameter * Math.PI;
         count++;
     }
-    const length_m = (length / 1000).toFixed(2);
+    const length_m = (length / 1000).toFixed(0);
     const current_circumference = `${((current_diameter * Math.PI) / 1000).toFixed(2)}`
-    document.getElementById('result_label2').innerHTML = 'Längd: ' + length_m + ' ± '  + current_circumference + ' m';
+    document.getElementById('result_label2').innerHTML = 'Längd: ' + length_m + ' m';
     document.getElementById('count_label2').innerHTML = 'Antal varv: ' + count.toString() + ' st';
 }
 
