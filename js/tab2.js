@@ -67,22 +67,27 @@ function tab2_submit() {
 function validate_inputs(spool_diameter, thickness, total_spool_diameter) {
     const MAXLENGTH = 10000;
     const MAXTHICKNESS = 50;
-
-    if (thickness > MAXTHICKNESS) {
-        throw new Error("Orimlig tjocklek");
-    }
+    const MINTHICKNESS = 0.001
 
     if (total_spool_diameter > MAXLENGTH) {
         throw new Error("Orimlig diameter");
     }
 
-    if (!isInteger(spool_diameter) || !isInteger(total_spool_diameter)) {
+    if (!is_integer(spool_diameter) || !is_integer(total_spool_diameter)) {
         throw new Error("Otillåtna värden");
     }
 
-// Validate length to allow decimals
-    if (!isNumber(thickness)) {
+    // Validate length to allow decimals
+    if (!is_number(thickness)) {
         throw new Error("Otillåtna värden");
+    }
+
+    if (spool_diameter < 0 || thickness < 0 || total_spool_diameter < 0) {
+        throw new Error("Negativa värden är ej tillåtet")
+    }
+
+    if (thickness <= MINTHICKNESS || thickness > MAXTHICKNESS) {
+        throw new Error("Otillåten tjocklek")
     }
 
     return true;

@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diametra</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/diameter_tab.css">
-    <link rel="stylesheet" href="css/length_tab.css">
-    <link rel="stylesheet" href="css/weight_tab.css">
+    <link rel="stylesheet" href="css/tab1.css">
+    <link rel="stylesheet" href="css/tab2.css">
+    <link rel="stylesheet" href="css/tab3.css">
 </head>
 <body>
     <div class="card">
         <div class="tabs">
-            <button class="tablinks active" onclick="openTab(this, 'Tab1')">Diameter</button>
-            <button class="tablinks" onclick="openTab(this, 'Tab2')">Längd</button>
-            <button class="tablinks" onclick="openTab(this, 'Tab3')">Vikt</button>
+            <button class="tablinks active" onclick="open_tab(this, 'Tab1')">Diameter</button>
+            <button class="tablinks" onclick="open_tab(this, 'Tab2')">Längd</button>
+            <button class="tablinks" onclick="open_tab(this, 'Tab3')">Vikt</button>
         </div>
         <div class="tabcontent" id="Tab1">
             <form action="#" method="POST" id="dynamicForm">
                 <div class="option-wrapper">
-                    <select class="dropdown option-label" id="productOption" onchange="adjustVisibility(this.value)">
+                    <select class="dropdown option-label" id="productOption" onchange="tab1_visibility(this.value)">
                         <option value="no_option">Välj produkt</option>
                         <option value="foil_option">Enkelfolie</option>
                         <option value="tube_option">Slang</option>
@@ -107,7 +107,8 @@
             <h2>Under Utveckling</h2>
         </div>
     </div>
-    <script src="scripts.js"></script>
-    <script src="length.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/tab1.js"></script>
+    <script src="js/tab2.js"></script>
 </body>
 </html>
