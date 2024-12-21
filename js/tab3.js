@@ -115,9 +115,9 @@ function printProduct(formValueMap) {
     const weight_per_roll = toKg(calculateOrderPerRollWeight(length, width, thickness, amount, roll_amount, true, bottom_weld), 'g');
     const weight_total =     toKg(calculateOrderPerRollWeight(length, width, thickness, amount, 1, true, bottom_weld), 'g');
 
-    resultMap['Vikt per st(g): '] = formatSwedishNumber(weight_per_item);
-    resultMap['Vikt per rulle(kg): '] = formatSwedishNumber(weight_per_roll);
-    resultMap['Total vikt(kg): '] = formatSwedishNumber(weight_total);
+    resultMap['Vikt per st: '] = formatSwedishNumber(weight_per_item).toString() + ' g';
+    resultMap['Vikt per rulle: '] = formatSwedishNumber(weight_per_roll).toString() + ' kg';
+    resultMap['Total vikt: '] = formatSwedishNumber(weight_total).toString() + ' kg';
     prettyPrintToLabel(resultMap, "result_label3");
 }
 
@@ -132,9 +132,9 @@ function printSheet(formValueMap) {
     const weight_per_roll = toKg(calculateOrderPerRollWeight(length, width, thickness, amount, roll_amount, false, false), 'g');
     const weight_total = toKg(calculateOrderPerRollWeight(length, width, thickness, amount, 1, false, false), 'g');
 
-    resultMap['Vikt per st(g): '] = formatSwedishNumber(weight_per_item);
-    resultMap['Vikt per rulle(kg): '] = formatSwedishNumber(weight_per_roll);
-    resultMap['Total vikt(kg): '] = formatSwedishNumber(weight_total);
+    resultMap['Vikt per st: '] = formatSwedishNumber(weight_per_item).toString() + ' g';
+    resultMap['Vikt per rulle: '] = formatSwedishNumber(weight_per_roll).toString() + ' kg';
+    resultMap['Total vikt: '] = formatSwedishNumber(weight_total).toString() + ' kg';
     prettyPrintToLabel(resultMap, "result_label3");
 }
 
@@ -145,7 +145,11 @@ function printRoll(formValueMap, isTube) {
     let thickness = formValueMap['roll_thickness3'];
     let amount = formValueMap['roll_amount3'];
     let weight_total = toKg(calculateRollWeight(length, width, thickness, amount, isTube), 'g');
-    resultMap['Total vikt(kg): '] = formatSwedishNumber(weight_total);
+    let weight_per_roll = toKg(calculateRollWeight(length, width, thickness, amount, isTube)/amount, 'g');
+    let gram_meter_weight = calculateRollWeight(length, width, thickness, amount, isTube)/length;
+    resultMap['Gram per meter: '] = formatSwedishNumber(gram_meter_weight).toString() + ' g';
+    resultMap['Vikt per rulle: '] = formatSwedishNumber(weight_per_roll).toString() + ' kg';
+    resultMap['Total vikt: '] = formatSwedishNumber(weight_total).toString() + ' kg';
     prettyPrintToLabel(resultMap, "result_label3");
 }
 
