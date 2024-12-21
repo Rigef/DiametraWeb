@@ -104,11 +104,72 @@
         </div>
 
         <div class="tabcontent" id="Tab3" style="display:none;">
-            <h2>Under Utveckling</h2>
+            <form action="#" method="POST" id="dynamicForm3">
+                <div class="option-wrapper">
+                    <select class="dropdown option-label" id="productOption3" onchange="tab3_visibility(this.value)">
+                        <option value="no_option">Välj produkt</option>
+                        <option value="bag_option">Påse</option>
+                        <option value="sack_option">Säck</option>
+                        <option value="huv_option">Pallhuv</option>
+                        <option value="top_sheet_option">Toppark</option>
+                        <option value="tube_option">Slang</option>
+                        <option value="foil_option">Enkelfolie</option>
+                    </select>
+                </div>
+                <div class="input-wrapper" id="emptyWrapper3">
+                </div>
+                <div class="input-wrapper" id="productInputWrapper3">
+                    <label class="input-label" for="product_length3"><br>Längd (mm):<br></label>
+                    <input type="text" id="product_length3" class="input-field" placeholder="Längd (mm)">
+                    <label class="input-label" for="product_width3"><br>Bredd (mm):<br></label>
+                    <input type="text" id="product_width3" class="input-field" placeholder="Bredd (mm)">
+                    <label class="input-label" for="product_thickness3">Tjocklek (mm):<br></label>
+                    <input type="text" id="product_thickness3" class="input-field" placeholder="Tjocklek (mm)">
+                    <label class="input-label" for="product_amount3"><br>Antal (st):<br></label>
+                    <input type="text" id="product_amount3" class="input-field" placeholder="Antal (st)">
+                    <label class="input-label" for="product_roll_amount3"><br>Antal rullar/kartonger (st):<br></label>
+                    <input type="text" id="product_roll_amount3" class="input-field" placeholder="Antal rullar/kartonger (st)">
+                    <br>
+                    <input type="checkbox" id="product_bottom_weld_checkbox3" content="Hello">
+                    <label for="product_bottom_weld_checkbox3"> Bottensvetsad</label><br>
+                </div>
+                <div class="input-wrapper" id="sheetInputWrapper3">
+                    <label class="input-label" for="sheet_length3"><br>Längd (mm):<br></label>
+                    <input type="text" id="sheet_length3" class="input-field" placeholder="Längd (mm)">
+                    <label class="input-label" for="sheet_width3"><br>Bredd (mm):<br></label>
+                    <input type="text" id="sheet_width3" class="input-field" placeholder="Bredd (mm)">
+                    <label class="input-label" for="sheet_thickness3">Tjocklek (mm):<br></label>
+                    <input type="text" id="sheet_thickness3" class="input-field" placeholder="Tjocklek (mm)">
+                    <label class="input-label" for="sheet_amount3"><br>Antal (st):<br></label>
+                    <input type="text" id="sheet_amount3" class="input-field" placeholder="Antal (st)">
+                    <label class="input-label" for="sheet_roll_amount3"><br>Antal rullar/kartonger (st):<br></label>
+                    <input type="text" id="sheet_roll_amount3" class="input-field" placeholder="Antal rullar/kartonger (st)">
+                </div>
+                <div class="input-wrapper" id="rollInputWrapper3">
+                    <label class="input-label" for="roll_length3"><br>Längd (m):<br></label>
+                    <input type="text" id="roll_length3" class="input-field" placeholder="Längd (m)">
+                    <label class="input-label" for="roll_width3"><br>Bredd (mm):<br></label>
+                    <input type="text" id="roll_width3" class="input-field" placeholder="Bredd (mm)">
+                    <label class="input-label" for="roll_thickness3">Tjocklek (mm):<br></label>
+                    <input type="text" id="roll_thickness3" class="input-field" placeholder="Tjocklek (mm)">
+                    <label class="input-label" for="roll_amount3"><br>Antal rullar (st):<br></label>
+                    <input type="text" id="roll_amount3" class="input-field" placeholder="Antal rullar (st)">
+                </div>
+                <div class="submit-wrapper" id="submitWrapper3" onclick="tab3_submit()">
+                    <button type="button" class="submit-button">Beräkna vikt</button>
+                </div>
+
+                <div class="result-wrapper" id="resultWrapper3">
+                    <label id="result_label3"></label><br>
+                    <label id="count_label3"></label>
+                </div>
+            </form>
         </div>
     </div>
     <script src="js/scripts.js"></script>
     <script src="js/tab1.js"></script>
     <script src="js/tab2.js"></script>
+    <script src="js/tab3.js"></script>
+    <script src="js/weight_calc.js"></script>
 </body>
 </html>

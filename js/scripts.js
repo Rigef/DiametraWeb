@@ -67,6 +67,7 @@ function open_tab(element, tabName) {
 function reset_all() {
     tab1_reset()
     tab2_reset()
+    tab3_reset()
 }
 
 
