@@ -4,7 +4,7 @@ function calculateVolume(length, width, thickness) {
 }
 
 function getDensity() {
-    return 0.92;
+    return 0.923;
 }
 
 function toCm(length, fromUnit) {
